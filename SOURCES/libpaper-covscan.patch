@@ -1,0 +1,16 @@
+diff --git a/lib/paper.c b/lib/paper.c
+index 57db599..8817aea 100644
+--- a/lib/paper.c
++++ b/lib/paper.c
+@@ -211,7 +211,10 @@ PAPERSIZEVAR, fall-back to the old behaviour.
+ 		fclose(ps);
+ 
+ 		paperstr = malloc((strlen(papername) + 1) * sizeof(char));
+-		if (! paperstr) return 0;
++		if (! paperstr) {
++		    free(papername);
++		    return 0;
++		}
+ 
+ 		strcpy(paperstr, papername);
+ 		free(papername);
